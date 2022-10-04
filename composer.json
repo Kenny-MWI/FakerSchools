@@ -1,0 +1,39 @@
+{
+    "name": "kenny-mwi/faker-schools",
+    "description": "University, College, and High School name generator using fakerphp/faker",
+    "type": "library",
+    "require": {
+        "php": "^7.4|^8.0|^8.1",
+        "fakerphp/faker": "1.20"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "phpstan/phpstan": "^1.8"
+    },
+    "license": "The Unlicense",
+    "autoload": {
+        "psr-4": {
+            "FakerSchools\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FakerSchools\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --testdox",
+        "fix": "./vendor/bin/php-cs-fixer fix ./src -vvv --rules=@PSR12",
+        "fix:tests": "./vendor/bin/php-cs-fixer fix ./tests -vvv --rules=@PSR12",
+        "fix-check": "./vendor/bin/php-cs-fixer fix ./src -vvv --rules=@PSR12 --dry-run",
+        "fix-check:tests": "./vendor/bin/php-cs-fixer fix ./tests -vvv --rules=@PSR12 --dry-run"
+    },
+    "authors": [
+        {
+            "name": "Kenny Johnson",
+            "email": "kenny@buildmidwestern.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
