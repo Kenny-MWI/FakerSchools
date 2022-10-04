@@ -13,7 +13,7 @@ Remove the `--dev` flag if you need it in production.
 
 ## Usage
 
-To  use this with [Faker](https://github.com/FakerPHP/Faker), you must add the `FakerSchools\Schools` class to the Faker generator:
+To  use this with [Faker](https://github.com/FakerPHP/Faker), you must add the `Schools` class to the Faker generator:
 
 ```php
 <?php
@@ -27,3 +27,7 @@ $fake->highSchool();   // A random high school name
 $faker->college();     // A random college name
 $faker->university();  // A random university name
 ```
+
+### Laravel
+
+See [this article](https://hofmannsven.com/2021/faker-provider-in-laravel) for an alternative way to implement FakerSchools in a Laravel project.
