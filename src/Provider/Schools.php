@@ -53,6 +53,14 @@ class Schools extends FakerBase
         'University of Missouri'
     ];
 
+    public function __construct($locale = 'en_US')
+    {
+        $providerClass = 'FakerSchools\\' . ($locale ? sprintf('Provider\%s\%s', $locale, 'Schools') : 'Provider\Schools');
+
+        if (class_exists($providerClass)) {
+            $this->generator->addProvider(new $providerClass($this->generator));
+        }
+    }
 
     /**
      * A fictional university name. Any resemblance to real universities is purely coincidental.
