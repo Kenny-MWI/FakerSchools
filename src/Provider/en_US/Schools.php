@@ -2,12 +2,49 @@
 
 namespace FakerSchools\Provider\en_US;
 
-class Schools extends \Faker\Provider\Base
+use FakerSchools\Provider\Schools as BaseSchools;
+
+/**
+ * Class Schools
+ * @package FakerSchools\Provider\en_US
+ */
+class Schools extends BaseSchools
 {
     /**
      * @var array
      */
-    protected static $highSchools = [
+    protected static $universityFormats = [
+        '{{state}} University',
+        '{{state}} State University',
+        '{{state}} Institute of Technology',
+        'University of {{state}}',
+        'University of {{state}} at {{city}}',
+    ];
+
+    /**
+     * @var array
+     */
+    protected static $collegeFormats = [
+        '{{state}} College',
+        '{{state}} State College',
+        '{{city}} Community College',
+        '{{city}} Junior College',
+        '{{city}} Technical College'
+    ];
+
+    /**
+     * @var array
+     */
+    protected static $highSchoolFormats = [
+        '{{city}} High School',
+        '{{city}} County High School',
+        '{{lastName}} High School',
+    ];
+
+    /**
+     * @var array
+     */
+    protected static $realHighSchools = [
         'Brooklyn Technical High School',
         'Fort Hamilton High School',
         'Tottenville High School',
@@ -53,7 +90,7 @@ class Schools extends \Faker\Provider\Base
     /**
      * @var array
      */
-    protected static $colleges = [
+    protected static $realColleges = [
         'Crowder College',
         'Jefferson College',
         'Mineral Area College',
@@ -83,7 +120,7 @@ class Schools extends \Faker\Provider\Base
     /**
      * @var array
      */
-    protected static $universities = [
+    protected static $realUniversities = [
         'Ohio State University',
         'Alabama State University',
         'University of Georgia',
@@ -122,40 +159,4 @@ class Schools extends \Faker\Provider\Base
         'University of Colorado',
         'Oklahoma University'
     ];
-
-    /**
-     * A random high school name.
-     * @return string
-     */
-    public function highSchool()
-    {
-        return static::randomElement(static::$highSchools);
-    }
-
-    /**
-     * A random college name.
-     * @return string
-     */
-    public function college()
-    {
-        return static::randomElement(static::$colleges);
-    }
-
-    /**
-     * A random university name.
-     * @return string
-     */
-    public function university()
-    {
-        return static::randomElement(static::$universities);
-    }
-
-    /**
-     * A random school name.
-     * @return string
-     */
-    public function school()
-    {
-        return static::randomElement(array_merge(static::$highSchools, static::$colleges, static::$universities));
-    }
 }
