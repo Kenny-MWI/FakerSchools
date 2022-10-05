@@ -2,13 +2,9 @@
 
 namespace FakerSchools\Provider\en_US;
 
-use FakerSchools\Provider\Schools as BaseSchools;
+use Faker\Provider\Base as FakerBase;
 
-/**
- * Class Schools
- * @package FakerSchools\Provider\en_US
- */
-class Schools extends BaseSchools
+class Schools extends FakerBase
 {
     /**
      * @var array
@@ -159,4 +155,88 @@ class Schools extends BaseSchools
         'University of Colorado',
         'Oklahoma University'
     ];
+
+    /**
+     * A fictional university name. Any resemblance to real universities is purely coincidental.
+     * @example 'Missouri Institute of Technology'
+     * @return string
+     */
+    public function university()
+    {
+        $format = static::randomElement(static::$universityFormats);
+
+        return $this->generator->parse($format);
+    }
+
+    /**
+     * A fictional college name. Any resemblance to real colleges is purely coincidental.
+     * @example 'Springfield Community College'
+     * @return string
+     */
+    public function college()
+    {
+        $format = static::randomElement(static::$collegeFormats);
+
+        return $this->generator->parse($format);
+    }
+
+    /**
+     * A fictional high school name. Any resemblance to real high schools is purely coincidental.
+     * @example 'Zulauf High School'
+     * @return string
+     */
+    public function highSchool()
+    {
+        $format = static::randomElement(static::$highSchoolFormats);
+
+        return $this->generator->parse($format);
+    }
+
+    /**
+     * A fictional university, college, or high school name. Any resemblance to a real school's name is purely coincidental.
+     * @example 'University of Missouri'
+     * @return string
+     */
+    public function school()
+    {
+        $format = static::randomElement(array_merge(static::$universityFormats, static::$collegeFormats, static::$highSchoolFormats));
+
+        return $this->generator->parse($format);
+    }
+
+    /**
+     * A real high school name.
+     * @return string
+     */
+    public function realHighSchool()
+    {
+        return static::randomElement(static::$realHighSchools);
+    }
+
+    /**
+     * A real college name.
+     * @return string
+     */
+    public function realCollege()
+    {
+        return static::randomElement(static::$realColleges);
+    }
+
+    /**
+     * A real university name.
+     * @return string
+     */
+    public function realUniversity()
+    {
+        return static::randomElement(static::$realUniversities);
+    }
+
+    /**
+     * A real university, college, or high school name.
+     * @return string
+     */
+    public function realSchool()
+    {
+        return static::randomElement(array_merge(static::$realHighSchools, static::$realColleges, static::$realUniversities));
+    }
 }

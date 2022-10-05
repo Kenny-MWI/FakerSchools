@@ -21,25 +21,45 @@ class FakeSchoolTest extends TestCase
 
     public function testCanGetRandomHighSchool()
     {
-        $this->assertContains($this->faker->highSchool, $this->getProtectedProperty('highSchools'));
+        $this->assertIsString($this->faker->highSchool);
     }
 
     public function testCanGetRandomCollege()
     {
-        $this->assertContains($this->faker->college, $this->getProtectedProperty('colleges'));
+        $this->assertIsString($this->faker->college);
     }
 
     public function testCanGetRandomUniversity()
     {
-        $this->assertContains($this->faker->university, $this->getProtectedProperty('universities'));
+        $this->assertIsString($this->faker->university);
     }
 
     public function testCanGetRandomSchool()
     {
-        $this->assertContains($this->faker->school, array_merge(
-            $this->getProtectedProperty('highSchools'),
-            $this->getProtectedProperty('colleges'),
-            $this->getProtectedProperty('universities')
+        $this->assertIsString($this->faker->school);
+    }
+
+    public function testCanGetRandomRealHighSchool()
+    {
+        $this->assertContains($this->faker->realHighSchool, $this->getProtectedProperty('realHighSchools'));
+    }
+
+    public function testCanGetRandomRealCollege()
+    {
+        $this->assertContains($this->faker->realCollege, $this->getProtectedProperty('realColleges'));
+    }
+
+    public function testCanGetRandomRealUniversity()
+    {
+        $this->assertContains($this->faker->realUniversity, $this->getProtectedProperty('realUniversities'));
+    }
+
+    public function testCanGetRandomRealSchool()
+    {
+        $this->assertContains($this->faker->realSchool, array_merge(
+            $this->getProtectedProperty('realHighSchools'),
+            $this->getProtectedProperty('realColleges'),
+            $this->getProtectedProperty('realUniversities')
         ));
     }
 
