@@ -3,8 +3,9 @@
 namespace FakerSchools\Provider\sv_SE;
 
 use Faker\Provider\Base as FakerBase;
+use FakerSchools\Interface\SchoolInterface;
 
-class Schools extends FakerBase
+class Schools extends FakerBase implements SchoolInterface
 {
     /**
      * @var array
@@ -70,7 +71,7 @@ class Schools extends FakerBase
      * Ett äkta universitetsnamn.
      * @return string
      */
-    public function realUniversity()
+    public function realUniversity(): string
     {
         return static::randomElement(static::$realUniversities);
     }
@@ -80,10 +81,71 @@ class Schools extends FakerBase
      * @example 'Helsingborg universitet'
      * @return string
      */
-    public function university()
+    public function university(): string
     {
         $format = static::randomElement(static::$universityFormats);
 
         return $this->generator->parse($format);
+    }
+
+    /**
+     * Ett äkta högstadiets namn.
+     * @return string
+     */
+    public function realHighSchool(): string
+    {
+        return static::randomElement(static::$realHighSchools);
+    }
+
+    /**
+     * Ett påhittad högstadiets namn.
+     * @example 'Helsingborg högstadiet'
+     * @return string
+     */
+    public function highSchool(): string
+    {
+        $format = static::randomElement(static::$highSchoolFormats);
+
+        return $this->generator->parse($format);
+    }
+
+    /**
+     * Ett äkta högskolans namn.
+     * @return string
+     */
+    public function realCollege(): string
+    {
+        return static::randomElement(static::$realColleges);
+    }
+
+    /**
+     * Ett påhittad högskolans namn.
+     * @example 'Helsingborg högskola'
+     * @return string
+     */
+    public function college(): string
+    {
+        $format = static::randomElement(static::$collegeFormats);
+
+        return $this->generator->parse($format);
+    }
+
+    /**
+     * Ett äkta universitetsnamn, högskolans namn eller högstadiets namn.
+     * @return string
+     */
+    public function realSchool(): string
+    {
+        return static::randomElement(array_merge(static::$realUniversities, static::$realColleges, static::$realHighSchools));
+    }
+
+    /**
+     * Ett påhittad universitetsnamn, högskolans namn eller högstadiets namn.
+     * @example 'Helsingborg högskola'
+     * @return string
+     */
+    public function school(): string
+    {
+        return static::randomElement(array_merge(static::$universityFormats, static::$collegeFormats, static::$highSchoolFormats));
     }
 }

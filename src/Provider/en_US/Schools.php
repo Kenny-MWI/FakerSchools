@@ -3,8 +3,9 @@
 namespace FakerSchools\Provider\en_US;
 
 use Faker\Provider\Base as FakerBase;
+use FakerSchools\Interface\SchoolInterface;
 
-class Schools extends FakerBase
+class Schools extends FakerBase implements SchoolInterface
 {
     /**
      * @var array
@@ -161,7 +162,7 @@ class Schools extends FakerBase
      * @example 'Missouri Institute of Technology'
      * @return string
      */
-    public function university()
+    public function university(): string
     {
         $format = static::randomElement(static::$universityFormats);
 
@@ -173,7 +174,7 @@ class Schools extends FakerBase
      * @example 'Springfield Community College'
      * @return string
      */
-    public function college()
+    public function college(): string
     {
         $format = static::randomElement(static::$collegeFormats);
 
@@ -185,7 +186,7 @@ class Schools extends FakerBase
      * @example 'Zulauf High School'
      * @return string
      */
-    public function highSchool()
+    public function highSchool(): string
     {
         $format = static::randomElement(static::$highSchoolFormats);
 
@@ -197,7 +198,7 @@ class Schools extends FakerBase
      * @example 'University of Missouri'
      * @return string
      */
-    public function school()
+    public function school(): string
     {
         $format = static::randomElement(array_merge(static::$universityFormats, static::$collegeFormats, static::$highSchoolFormats));
 
@@ -208,7 +209,7 @@ class Schools extends FakerBase
      * A real high school name.
      * @return string
      */
-    public function realHighSchool()
+    public function realHighSchool(): string
     {
         return static::randomElement(static::$realHighSchools);
     }
@@ -217,7 +218,7 @@ class Schools extends FakerBase
      * A real college name.
      * @return string
      */
-    public function realCollege()
+    public function realCollege(): string
     {
         return static::randomElement(static::$realColleges);
     }
@@ -226,7 +227,7 @@ class Schools extends FakerBase
      * A real university name.
      * @return string
      */
-    public function realUniversity()
+    public function realUniversity(): string
     {
         return static::randomElement(static::$realUniversities);
     }
@@ -235,7 +236,7 @@ class Schools extends FakerBase
      * A real university, college, or high school name.
      * @return string
      */
-    public function realSchool()
+    public function realSchool(): string
     {
         return static::randomElement(array_merge(static::$realHighSchools, static::$realColleges, static::$realUniversities));
     }

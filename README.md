@@ -24,7 +24,7 @@ $faker->addProvider(new \FakerSchools\Provider\sv_SE\Schools($faker)); // To use
 
 // Generator
 $faker->school(); // A randomly generated high school, college, or university school name
-$fake->highSchool(); // A randomly generated high school name
+$faker->highSchool(); // A randomly generated high school name
 $faker->college(); // A randomly generated college name
 $faker->university(); // A randomly generated university name
 $faker->realCollege(); // A real college name
