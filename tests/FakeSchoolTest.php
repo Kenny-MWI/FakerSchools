@@ -3,70 +3,145 @@
 namespace FakerSchools\Tests;
 
 use Faker\Factory;
-use FakerSchools\Provider\en_US\Schools;
+use FakerSchools\Interface\SchoolInterface;
+use FakerSchools\Provider\en_US\Schools as en_US_Schools;
 use PHPUnit\Framework\TestCase;
+use Faker\Generator as FakerGenerator;
 
 class FakeSchoolTest extends TestCase
 {
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
+    private FakerGenerator $faker;
 
-    protected function setUp(): void
+    public function setUp(): void
     {
         $this->faker = Factory::create();
-        $this->faker->addProvider(new Schools($this->faker));
     }
 
-    public function testCanGetRandomHighSchool()
+    /**
+     * Data Provider for these tests
+     * @see https://phpunit.readthedocs.io/en/9.5/writing-tests-for-phpunit.html#writing-tests-for-phpunit-data-providers
+     */
+    protected function locales(): array
     {
+        return [
+            'English (United States)' => ['en_US'],
+            'Swedish' => ['sv_SE'],
+        ];
+    }
+
+    /**
+     * @dataProvider locales
+     */
+    public function testProviderImplementsSchoolInterface($locale)
+    {
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->assertInstanceOf(SchoolInterface::class, new $class($this->faker));
+    }
+
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomHighSchool($locale)
+    {
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
         $this->assertIsString($this->faker->highSchool);
+        $this->assertNotEmpty($this->faker->highSchool);
     }
 
-    public function testCanGetRandomCollege()
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomCollege($locale)
     {
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
         $this->assertIsString($this->faker->college);
+        $this->assertNotEmpty($this->faker->college);
     }
 
-    public function testCanGetRandomUniversity()
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomUniversity($locale)
     {
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
         $this->assertIsString($this->faker->university);
+        $this->assertNotEmpty($this->faker->university);
     }
 
-    public function testCanGetRandomSchool()
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomSchool($locale)
     {
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
         $this->assertIsString($this->faker->school);
+        $this->assertNotEmpty($this->faker->school);
     }
 
-    public function testCanGetRandomRealHighSchool()
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomRealHighSchool($locale)
     {
-        $this->assertContains($this->faker->realHighSchool, $this->getProtectedProperty('realHighSchools'));
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realHighSchool;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, $this->getProtectedProperty('realHighSchools', new $class($this->faker)));
     }
 
-    public function testCanGetRandomRealCollege()
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomRealCollege($locale)
     {
-        $this->assertContains($this->faker->realCollege, $this->getProtectedProperty('realColleges'));
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realCollege;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, $this->getProtectedProperty('realColleges', new $class($this->faker)));
     }
 
-    public function testCanGetRandomRealUniversity()
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomRealUniversity($locale)
     {
-        $this->assertContains($this->faker->realUniversity, $this->getProtectedProperty('realUniversities'));
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realUniversity;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, $this->getProtectedProperty('realUniversities', new $class($this->faker)));
     }
 
-    public function testCanGetRandomRealSchool()
+    /**
+     * @dataProvider locales
+     */
+    public function testCanGetRandomRealSchool($locale)
     {
-        $this->assertContains($this->faker->realSchool, array_merge(
-            $this->getProtectedProperty('realHighSchools'),
-            $this->getProtectedProperty('realColleges'),
-            $this->getProtectedProperty('realUniversities')
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realSchool;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, array_merge(
+            $this->getProtectedProperty('realHighSchools', new $class($this->faker)),
+            $this->getProtectedProperty('realColleges', new $class($this->faker)),
+            $this->getProtectedProperty('realUniversities', new $class($this->faker))
         ));
     }
 
     private function getProtectedProperty($property, $class = null)
     {
         if (is_null($class)) {
-            $class = new Schools($this->faker);
+            $class = new en_US_Schools($this->faker);
         }
 
         $reflection = new \ReflectionClass($class);
