@@ -35,7 +35,7 @@ Make sure your faker locale matches the FakerSchools locale you pick or you may 
 
 ### Laravel
 
-See [this article](https://hofmannsven.com/2021/faker-provider-in-laravel) for an alternative way to implement FakerSchools in a Laravel project.
+See [this article](https://hofmannsven.com/2021/faker-provider-in-laravel) for using custom providers in a Laravel project. (Although the method above works just fine as well.)
 
 ## Contributing
 
