@@ -6,18 +6,36 @@ use Faker\Factory;
 use FakerSchools\Interface\SchoolInterface;
 use FakerSchools\Provider\en_US\Schools as en_US_Schools;
 use PHPUnit\Framework\TestCase;
+use Faker\Generator as FakerGenerator;
 
 class FakeSchoolTest extends TestCase
 {
-    /**
-     * @var \Faker\Generator
-     */
-    private $faker;
+    private FakerGenerator $faker;
 
-    // setup
     public function setUp(): void
     {
         $this->faker = Factory::create();
+    }
+
+    /**
+     * Data Provider for these tests
+     * @see https://phpunit.readthedocs.io/en/9.5/writing-tests-for-phpunit.html#writing-tests-for-phpunit-data-providers
+     */
+    protected function locales(): array
+    {
+        return [
+            'English (United States)' => ['en_US'],
+            'Swedish' => ['sv_SE'],
+        ];
+    }
+
+    /**
+     * @dataProvider locales
+     */
+    public function testProviderImplementsSchoolInterface($locale)
+    {
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->assertInstanceOf(SchoolInterface::class, new $class($this->faker));
     }
 
     /**
@@ -28,6 +46,7 @@ class FakeSchoolTest extends TestCase
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
             $this->assertIsString($this->faker->highSchool);
+            $this->assertNotEmpty($this->faker->highSchool);
     }
 
     /**
@@ -38,6 +57,7 @@ class FakeSchoolTest extends TestCase
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
             $this->assertIsString($this->faker->college);
+            $this->assertNotEmpty($this->faker->college);
     }
 
     /**
@@ -48,6 +68,7 @@ class FakeSchoolTest extends TestCase
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
             $this->assertIsString($this->faker->university);
+            $this->assertNotEmpty($this->faker->university);
     }
 
     /**
@@ -58,6 +79,7 @@ class FakeSchoolTest extends TestCase
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
             $this->assertIsString($this->faker->school);
+            $this->assertNotEmpty($this->faker->school);
     }
 
     /**
@@ -67,10 +89,10 @@ class FakeSchoolTest extends TestCase
     {
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
-            $this->assertContains(
-                $this->faker->realHighSchool,
-                $this->getProtectedProperty('realHighSchools', new $class($this->faker))
-            );
+            $school = $this->faker->realHighSchool;
+            $this->assertIsString($school);
+            $this->assertNotEmpty($school);
+            $this->assertContains($school, $this->getProtectedProperty('realHighSchools', new $class($this->faker)));
     }
 
     /**
@@ -80,10 +102,10 @@ class FakeSchoolTest extends TestCase
     {
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
-            $this->assertContains(
-                $this->faker->realCollege,
-                $this->getProtectedProperty('realColleges', new $class($this->faker))
-            );
+            $school = $this->faker->realCollege;
+            $this->assertIsString($school);
+            $this->assertNotEmpty($school);
+            $this->assertContains($school, $this->getProtectedProperty('realColleges', new $class($this->faker)));
     }
 
     /**
@@ -93,10 +115,10 @@ class FakeSchoolTest extends TestCase
     {
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
-            $this->assertContains(
-                $this->faker->realUniversity,
-                $this->getProtectedProperty('realUniversities', new $class($this->faker))
-            );
+            $school = $this->faker->realUniversity;
+            $this->assertIsString($school);
+            $this->assertNotEmpty($school);
+            $this->assertContains($school, $this->getProtectedProperty('realUniversities', new $class($this->faker)));
     }
 
     /**
@@ -106,7 +128,10 @@ class FakeSchoolTest extends TestCase
     {
             $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
             $this->faker->addProvider(new $class($this->faker));
-            $this->assertContains($this->faker->realSchool, array_merge(
+            $school = $this->faker->realSchool;
+            $this->assertIsString($school);
+            $this->assertNotEmpty($school);
+            $this->assertContains($school, array_merge(
                 $this->getProtectedProperty('realHighSchools', new $class($this->faker)),
                 $this->getProtectedProperty('realColleges', new $class($this->faker)),
                 $this->getProtectedProperty('realUniversities', new $class($this->faker))
@@ -119,22 +144,10 @@ class FakeSchoolTest extends TestCase
             $class = new en_US_Schools($this->faker);
         }
 
-        if ($class instanceof SchoolInterface) {
-            $reflection = new \ReflectionClass($class);
-            $reflection_property = $reflection->getProperty($property);
-            $reflection_property->setAccessible(true);
+        $reflection = new \ReflectionClass($class);
+        $reflection_property = $reflection->getProperty($property);
+        $reflection_property->setAccessible(true);
 
-            return $reflection_property->getValue($class);
-        }
-
-        return null;
-    }
-
-    protected function locales()
-    {
-        return [
-            'English (United States)' => ['en_US'],
-            'Swedish' => ['sv_SE'],
-        ];
+        return $reflection_property->getValue($class);
     }
 }
