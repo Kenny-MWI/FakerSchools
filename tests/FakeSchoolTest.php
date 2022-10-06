@@ -43,10 +43,10 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomHighSchool($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $this->assertIsString($this->faker->highSchool);
-            $this->assertNotEmpty($this->faker->highSchool);
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $this->assertIsString($this->faker->highSchool);
+        $this->assertNotEmpty($this->faker->highSchool);
     }
 
     /**
@@ -54,10 +54,10 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomCollege($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $this->assertIsString($this->faker->college);
-            $this->assertNotEmpty($this->faker->college);
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $this->assertIsString($this->faker->college);
+        $this->assertNotEmpty($this->faker->college);
     }
 
     /**
@@ -65,10 +65,10 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomUniversity($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $this->assertIsString($this->faker->university);
-            $this->assertNotEmpty($this->faker->university);
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $this->assertIsString($this->faker->university);
+        $this->assertNotEmpty($this->faker->university);
     }
 
     /**
@@ -76,10 +76,10 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomSchool($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $this->assertIsString($this->faker->school);
-            $this->assertNotEmpty($this->faker->school);
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $this->assertIsString($this->faker->school);
+        $this->assertNotEmpty($this->faker->school);
     }
 
     /**
@@ -87,12 +87,12 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomRealHighSchool($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $school = $this->faker->realHighSchool;
-            $this->assertIsString($school);
-            $this->assertNotEmpty($school);
-            $this->assertContains($school, $this->getProtectedProperty('realHighSchools', new $class($this->faker)));
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realHighSchool;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, $this->getProtectedProperty('realHighSchools', new $class($this->faker)));
     }
 
     /**
@@ -100,12 +100,12 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomRealCollege($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $school = $this->faker->realCollege;
-            $this->assertIsString($school);
-            $this->assertNotEmpty($school);
-            $this->assertContains($school, $this->getProtectedProperty('realColleges', new $class($this->faker)));
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realCollege;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, $this->getProtectedProperty('realColleges', new $class($this->faker)));
     }
 
     /**
@@ -113,12 +113,12 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomRealUniversity($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $school = $this->faker->realUniversity;
-            $this->assertIsString($school);
-            $this->assertNotEmpty($school);
-            $this->assertContains($school, $this->getProtectedProperty('realUniversities', new $class($this->faker)));
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realUniversity;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, $this->getProtectedProperty('realUniversities', new $class($this->faker)));
     }
 
     /**
@@ -126,16 +126,16 @@ class FakeSchoolTest extends TestCase
      */
     public function testCanGetRandomRealSchool($locale)
     {
-            $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
-            $this->faker->addProvider(new $class($this->faker));
-            $school = $this->faker->realSchool;
-            $this->assertIsString($school);
-            $this->assertNotEmpty($school);
-            $this->assertContains($school, array_merge(
-                $this->getProtectedProperty('realHighSchools', new $class($this->faker)),
-                $this->getProtectedProperty('realColleges', new $class($this->faker)),
-                $this->getProtectedProperty('realUniversities', new $class($this->faker))
-            ));
+        $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
+        $this->faker->addProvider(new $class($this->faker));
+        $school = $this->faker->realSchool;
+        $this->assertIsString($school);
+        $this->assertNotEmpty($school);
+        $this->assertContains($school, array_merge(
+            $this->getProtectedProperty('realHighSchools', new $class($this->faker)),
+            $this->getProtectedProperty('realColleges', new $class($this->faker)),
+            $this->getProtectedProperty('realUniversities', new $class($this->faker))
+        ));
     }
 
     private function getProtectedProperty($property, $class = null)
