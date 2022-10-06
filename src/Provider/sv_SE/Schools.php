@@ -20,7 +20,13 @@ class Schools extends FakerBase implements SchoolInterface
      * @todo
      * @var array
      */
-    protected static $collegeFormats = [];
+    protected static $collegeFormats = [
+        '{{city}} högskola',
+        '{{city}} konstnärliga högskola',
+        '{{city}} tekniska högskola',
+        'Högskolan {{city}}',
+        'Högskolan i {{city}}',
+    ];
 
     /**
      * @var array
@@ -31,16 +37,33 @@ class Schools extends FakerBase implements SchoolInterface
     ];
 
     /**
-     * @todo
      * @var array
      */
-    protected static $realHighSchools = [];
+    protected static $realHighSchools = [
+        'Skeppsholmens Folkhögskola',
+        'Östra Reals Gymnasium',
+        'Enskilda Gymnasiet',
+    ];
 
     /**
-     * @todo
+     * @see https://sv.wikipedia.org/wiki/Lista_%C3%B6ver_universitet_och_h%C3%B6gskolor_i_Sverige#Statliga_h%C3%B6gskolor_med_r%C3%A4tt_att_utf%C3%A4rda_examina_inom_forskarutbildning
+     * @see https://en.wikipedia.org/wiki/List_of_universities_and_colleges_in_Sweden#Public_university_colleges
      * @var array
      */
-    protected static $realColleges = [];
+    protected static $realColleges = [
+        'Blekinge tekniska högskola',
+        'Gymnastik- och idrottshögskolan',
+        'Högskolan i Borås',
+        'Högskolan i Halmstad',
+        'Högskolan i Skövde',
+        'Högskolan Kristianstad',
+        'Högskolan Väst',
+        'Södertörns högskola',
+        'Högskolan i Gävle',
+        'Högskolan Dalarna',
+        'Försvarshögskolan',
+        'Stockholms konstnärliga högskola'
+    ];
 
     /**
      * @see https://www.rocapply.com/study-in-sweden/sweden-universities/
