@@ -34,8 +34,23 @@ $faker->realUniversity(); // A real university name
 Make sure your faker locale matches the FakerSchools locale you pick or you may see some mismatched names generated. In Laravel projects this is defined in `config/app.php`.
 
 ### Laravel
+If you're using this in a Laravel database factory, you can add the provider in your `definition()` method or other method where you need it:
+```php
+use FakerSchools\Provider\en_US\Schools;
 
-See [this article](https://hofmannsven.com/2021/faker-provider-in-laravel) for using custom providers in a Laravel project. (Although the method above works just fine as well.)
+class SchoolFactory extends Factory {
+
+    public function definition()
+    {
+        $this->faker->addProvider(new Schools($this->faker));
+        return [
+            'name' => $this->faker->college()
+        ];
+    }
+}
+```
+
+See [this article](https://hofmannsven.com/2021/faker-provider-in-laravel) for an alternative way to use custom providers in a Laravel project if you don't want to use the above method.
 
 ## Contributing
 
