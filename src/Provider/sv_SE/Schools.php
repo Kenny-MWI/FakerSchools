@@ -3,7 +3,7 @@
 namespace FakerSchools\Provider\sv_SE;
 
 use Faker\Provider\Base as FakerBase;
-use FakerSchools\Interface\SchoolInterface;
+use FakerSchools\SchoolInterface;
 
 class Schools extends FakerBase implements SchoolInterface
 {

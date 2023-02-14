@@ -1,6 +1,6 @@
 <?php
 
-namespace FakerSchools\Interface;
+namespace FakerSchools;
 
 interface SchoolInterface
 {

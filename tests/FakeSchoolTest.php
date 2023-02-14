@@ -3,7 +3,7 @@
 namespace FakerSchools\Tests;
 
 use Faker\Factory;
-use FakerSchools\Interface\SchoolInterface;
+use FakerSchools\SchoolInterface;
 use FakerSchools\Provider\en_US\Schools as en_US_Schools;
 use PHPUnit\Framework\TestCase;
 use Faker\Generator as FakerGenerator;
