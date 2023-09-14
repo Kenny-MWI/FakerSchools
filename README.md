@@ -1,6 +1,6 @@
 [![Unit Tests](https://github.com/Kenny-MWI/FakerSchools/actions/workflows/php.yml/badge.svg?branch=main)](https://github.com/Kenny-MWI/FakerSchools/actions/workflows/php.yml)
-![Packagist Downloads (custom server)](https://img.shields.io/packagist/dt/kenny-mwi/faker-schools?server=https%3A%2F%2Fpackagist.org&style=flat&logo=packagist&link=https%3A%2F%2Fpackagist.org%2Fpackages%2Fkenny-mwi%2Ffaker-schools)
-![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/kenny-mwi/faker-schools/php?logo=php)
+![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/kenny-mwi/faker-schools/php?logo=php&color=%230057B8)
+![Packagist Downloads (custom server)](https://img.shields.io/packagist/dt/kenny-mwi/faker-schools?server=https%3A%2F%2Fpackagist.org&style=flat&logo=packagist&color=%23FFD700&link=https%3A%2F%2Fpackagist.org%2Fpackages%2Fkenny-mwi%2Ffaker-schools)
 [![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
 
 # FakerSchools
