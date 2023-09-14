@@ -32,7 +32,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testProviderImplementsSchoolInterface($locale)
+    public function testProviderImplementsSchoolInterface(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->assertInstanceOf(SchoolInterface::class, new $class($this->faker));
@@ -41,7 +41,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomHighSchool($locale)
+    public function testCanGetRandomHighSchool(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
@@ -52,7 +52,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomCollege($locale)
+    public function testCanGetRandomCollege(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
@@ -63,7 +63,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomUniversity($locale)
+    public function testCanGetRandomUniversity(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
@@ -74,7 +74,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomSchool($locale)
+    public function testCanGetRandomSchool(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
@@ -85,7 +85,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomRealHighSchool($locale)
+    public function testCanGetRandomRealHighSchool(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
@@ -98,7 +98,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomRealCollege($locale)
+    public function testCanGetRandomRealCollege(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
@@ -111,7 +111,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomRealUniversity($locale)
+    public function testCanGetRandomRealUniversity(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
@@ -124,7 +124,7 @@ class FakeSchoolTest extends TestCase
     /**
      * @dataProvider locales
      */
-    public function testCanGetRandomRealSchool($locale)
+    public function testCanGetRandomRealSchool(string $locale)
     {
         $class = 'FakerSchools\Provider\\' . $locale . '\Schools';
         $this->faker->addProvider(new $class($this->faker));
