@@ -18,7 +18,7 @@ Remove the `--dev` flag if you need it in production.
 
 ## Usage
 
-To  use this with [Faker](https://github.com/FakerPHP/Faker), you must add the `Schools` class to the Faker generator:
+This is a third-party library for [Faker](https://github.com/FakerPHP/Faker). You'll need to add the `Schools` class to the Faker generator in your setup somewhere:
 
 ```php
 <?php
@@ -39,24 +39,52 @@ $faker->realUniversity(); // A real university name
 Make sure your faker locale matches the FakerSchools locale you pick or you may see some mismatched names generated. In Laravel projects this is defined in `config/app.php`.
 
 ### Laravel
-If you're using this in a Laravel database factory, you can add the provider in your `definition()` method or other method where you need it:
+If you're using this in a Laravel database factory, you can create a custom `FakerServiceProvider` and add the provider there.
+
 ```php
+<?php
+
+namespace App\Providers;
+
+use Faker\Factory;
+use Faker\Generator;
 use FakerSchools\Provider\en_US\Schools;
+use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Support\ServiceProvider;
 
-class SchoolFactory extends Factory {
-
-    public function definition()
+class FakerServiceProvider extends ServiceProvider implements DeferrableProvider
+{
+    /**
+     * Register services.
+     */
+    public function register(): void
     {
-        $this->faker->addProvider(new Schools($this->faker));
-        return [
-            'name' => $this->faker->college()
-        ];
+        $this->app->singleton(Generator::class, function () {
+            $faker = Factory::create();
+            $faker->addProvider(new Schools($faker));
+            return $faker;
+        });
+    }
+
+    public function provides(): array
+    {
+        return [Generator::class];
     }
 }
 ```
 
-See [this article](https://hofmannsven.com/2021/faker-provider-in-laravel) for an alternative way to use custom providers in a Laravel project if you don't want to use the above method.
+Next, register the provider in `config/app.php` where your other custom service providers are registered.
+
+```php
+'providers' => ServiceProvider::defaultProviders()->merge([
+    App\Providers\FakerServiceProvider::class,
+    App\Providers\SomeOtherProvider::class,
+    // etc
+]);
+```
+
+Now you should be able to use any of the FakerSchools methods anywhere you're using faker in your project.
 
 ## Contributing
 
-Feel free to create localized providers for your own locale and submit a PR!
+Feel free to create localized providers for your own locale and submit a PR! I'm also always open to suggestions for new features to add.
