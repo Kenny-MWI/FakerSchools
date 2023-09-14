@@ -1,3 +1,8 @@
+[![Unit Tests](https://github.com/Kenny-MWI/FakerSchools/actions/workflows/php.yml/badge.svg?branch=main)](https://github.com/Kenny-MWI/FakerSchools/actions/workflows/php.yml)
+![Packagist Downloads (custom server)](https://img.shields.io/packagist/dt/kenny-mwi/faker-schools?server=https%3A%2F%2Fpackagist.org&style=flat&logo=packagist&link=https%3A%2F%2Fpackagist.org%2Fpackages%2Fkenny-mwi%2Ffaker-schools)
+![Packagist PHP Version](https://img.shields.io/packagist/dependency-v/kenny-mwi/faker-schools/php?logo=php)
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua)
+
 # FakerSchools
 University, College, and High School name generator using fakerphp/faker
 
